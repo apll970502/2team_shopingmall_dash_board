@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+# Virtual environment
+.venv/
+venv/
+# Jupyter
+.ipynb_checkpoints/
+# Environment variables
+.env
+*.env
+!*.env.example
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Generated files
+data/processed/*
+!data/processed/.gitkeep

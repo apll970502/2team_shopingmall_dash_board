@@ -1,9 +1,7 @@
 """
-app.py - STEP 4: 필터 한 개
+app.py - STEP 5: 표 출력
 ------------------------------------------------------------
-STEP 3에 사이드바 필터(상품 카테고리)를 추가한다.
-필터를 products에 적용해 '전체 고객 수' 옆에 '필터링된 상품 수' 지표를 추가,
-필터 선택에 따라 지표가 바뀌는 것을 확인할 수 있게 한다.
+STEP 4에서 필터링한 products_f를 st.dataframe()으로 화면에 표시한다.
 ------------------------------------------------------------
 """
 
@@ -43,3 +41,7 @@ st.subheader("핵심 지표")
 col1, col2 = st.columns(2)
 col1.metric("전체 고객 수", f"{customers['customer_id'].nunique():,} 명")
 col2.metric("필터링된 상품 수", f"{products_f['product_id'].nunique():,} 개")
+
+# ---- 표 출력 ----
+st.subheader("상품 목록")
+st.dataframe(products_f, use_container_width=True, hide_index=True)

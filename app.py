@@ -1,8 +1,9 @@
 """
-app.py - STEP 3: 지표 한 개
+app.py - STEP 4: 필터 한 개
 ------------------------------------------------------------
-STEP 2에 st.metric()으로 '전체 고객 수' 지표 1개를 추가한다.
-로딩 확인용 st.write는 제거한다.
+STEP 3에 사이드바 필터(상품 카테고리)를 추가한다.
+필터를 products에 적용해 '전체 고객 수' 옆에 '필터링된 상품 수' 지표를 추가,
+필터 선택에 따라 지표가 바뀌는 것을 확인할 수 있게 한다.
 ------------------------------------------------------------
 """
 
@@ -28,6 +29,17 @@ if is_data_empty(raw_data):
     st.stop()
 
 customers = raw_data["customers"]
+products = raw_data["products"]
 
+# ---- 필터 (사이드바) ----
+st.sidebar.header("🔎 필터")
+category_options = sorted(products["category"].dropna().unique().tolist())
+selected_categories = st.sidebar.multiselect("상품 카테고리", category_options)
+
+products_f = products[products["category"].isin(selected_categories)] if selected_categories else products
+
+# ---- 지표 ----
 st.subheader("핵심 지표")
-st.metric("전체 고객 수", f"{customers['customer_id'].nunique():,} 명")
+col1, col2 = st.columns(2)
+col1.metric("전체 고객 수", f"{customers['customer_id'].nunique():,} 명")
+col2.metric("필터링된 상품 수", f"{products_f['product_id'].nunique():,} 개")

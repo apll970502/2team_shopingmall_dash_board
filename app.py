@@ -1,8 +1,8 @@
 """
-app.py - STEP 2: 데이터 로딩
+app.py - STEP 3: 지표 한 개
 ------------------------------------------------------------
-STEP 1에 CSV 4종 로딩을 추가한다.
-아직 지표/필터/표/차트는 없고, 로딩이 잘 되는지 행 수만 확인한다.
+STEP 2에 st.metric()으로 '전체 고객 수' 지표 1개를 추가한다.
+로딩 확인용 st.write는 제거한다.
 ------------------------------------------------------------
 """
 
@@ -27,5 +27,7 @@ if is_data_empty(raw_data):
     st.error("데이터를 불러오지 못했습니다. data/raw/ 폴더의 CSV 파일을 확인해주세요.")
     st.stop()
 
-st.success("데이터 로딩 완료")
-st.write({name: df.shape for name, df in raw_data.items()})
+customers = raw_data["customers"]
+
+st.subheader("핵심 지표")
+st.metric("전체 고객 수", f"{customers['customer_id'].nunique():,} 명")

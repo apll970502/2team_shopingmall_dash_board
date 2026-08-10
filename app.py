@@ -26,9 +26,9 @@ from src import charts
 # ------------------------------------------------------------
 # 1. 기본 화면
 # ------------------------------------------------------------
-st.set_page_config(page_title="이커머스 데이터 대시보드", page_icon="📊", layout="wide")
+st.set_page_config(page_title="쇼핑몰 데이터 대시보드", page_icon="📊", layout="wide")
 
-st.title("📊 이커머스 데이터 대시보드")
+st.title("📊 쇼핑몰 데이터 대시보드")
 st.caption("고객 · 상품 · 주문 · 주문상세 데이터를 기반으로 핵심 현황을 확인합니다.")
 
 
